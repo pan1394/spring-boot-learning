@@ -9,7 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.panyilin.annotation.EnableQuartzSchedule;
 import com.panyilin.annotation.MySpringBoot;
-import com.panyilin.component.Commander;
+import com.panyilin.component.LifeBoat;
 
 @EnableQuartzSchedule  
 @MySpringBoot
@@ -17,13 +17,11 @@ public class MySpringBootApplication {
 	private static Logger logger = LoggerFactory.getLogger(MySpringBootApplication.class);
 
 	public static void main(String... args) {
-		
 		ApplicationContext context = new AnnotationConfigApplicationContext(MySpringBootApplication.class);
-		String[] beanNames = context.getBeanDefinitionNames();
-		Arrays.stream(beanNames).forEach(logger::info);
+		//String[] beanNames = context.getBeanDefinitionNames();
+		//Arrays.stream(beanNames).forEach(logger::info);
 		
-		Commander a = context.getBean(Commander.class);
-		a.sayHello();
-		a.execute();
+		LifeBoat a = context.getBean(LifeBoat.class);
+		a.whatHappened();
 	}
 }

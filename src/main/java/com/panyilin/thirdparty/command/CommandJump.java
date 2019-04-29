@@ -5,19 +5,19 @@ import org.slf4j.LoggerFactory;
 
 import com.panyilin.thirdparty.beans.Person;
 
-public class CommandWalk implements Command {
+public class CommandJump implements Command {
  
-	private static Logger logger = LoggerFactory.getLogger(CommandRun.class);
+	private static Logger logger = LoggerFactory.getLogger(CommandCry.class);
 	
 	private Person p;
 	
-	public CommandWalk(Person p) {
+	public CommandJump(Person p) {
 		super();
 		this.p = p;
 	}
 	
 	public void exec() {
-		logger.info("System asks {} to walk", p.getName());
+		logger.info("System asks {} to jump into the iced see!", p.getName());
 	}
 
 }

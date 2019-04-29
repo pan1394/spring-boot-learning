@@ -3,6 +3,7 @@ package com.panyilin.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
@@ -17,6 +18,7 @@ import com.panyilin.schedule.job.SimpleJob;
  */
 @ConditionalOnScheduleMarker
 @Configuration
+@Import({ScheduleProperties.class})
 public class ScheduleConfig {
 
 	// 进行注入我们的Job对象
@@ -30,6 +32,8 @@ public class ScheduleConfig {
 	@Autowired
 	private Job job;
 	
+	@Autowired
+	private ScheduleProperties prop;
 	
 	// 进行配置Spring的作业详情工厂类，我们所写的作业类都是给这个对象进行调用的
 	@Bean
@@ -47,7 +51,7 @@ public class ScheduleConfig {
 	public CronTriggerFactoryBean getCronTriggerFactoryBean() {
 		CronTriggerFactoryBean bean = new CronTriggerFactoryBean();
 		bean.setJobDetail(getMethodInvokingJobDetailFactoryBean().getObject());// 注入作业详情
-		bean.setCronExpression("0/5 * * * * ?");// Cron表达式
+		bean.setCronExpression(prop.getCronExp());// Cron表达式
 		return bean;
 	}
 

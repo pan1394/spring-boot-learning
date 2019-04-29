@@ -5,19 +5,19 @@ import org.slf4j.LoggerFactory;
 
 import com.panyilin.thirdparty.beans.Person;
 
-public class CommandRun implements Command {
+public class CommandCry implements Command {
  
-	private static Logger logger = LoggerFactory.getLogger(CommandRun.class);
+	private static Logger logger = LoggerFactory.getLogger(CommandCry.class);
 	
 	private Person p;
 	 
-	public CommandRun(Person p) {
+	public CommandCry(Person p) {
 		super();
 		this.p = p;
 	}
  
 	public void exec() {
-		logger.info("System asks {} to run", p.getName());
+		logger.info("System asks {} to cry for helping...", p.getName());
 	}
 
 }

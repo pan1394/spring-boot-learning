@@ -9,32 +9,38 @@ import org.springframework.stereotype.Component;
 
 import com.panyilin.thirdparty.beans.Person;
 import com.panyilin.thirdparty.command.Command;
-import com.panyilin.thirdparty.command.CommandRun;
+import com.panyilin.thirdparty.command.CommandJump;
 
 @Component 
-public class Commander {
+public class LifeBoat {
 
-	private static Logger logger = LoggerFactory.getLogger(CommandRun.class);
+	private static Logger logger = LoggerFactory.getLogger(LifeBoat.class);
 	
 	@Autowired
-	@Qualifier("jack")
+	@Qualifier("Rose")
 	private Person person;
 
  
 	@Autowired
+	@Qualifier("jumpCommand")
 	private Command c;
 	
 	@Bean
-	private Command command(@Qualifier("ruth") Person p) {
-		return new CommandRun(p);
+	@Qualifier("jumpCommand")
+	private Command command(@Qualifier("Jack") Person p) {
+		return new CommandJump(p);
 	}
 	
-	
-	public void sayHello() {
-		logger.info("{} says hello to you", person.getName());
+	public void whatHappened() {
+		this.execute();
+		this.stay();
+	}
+
+	private void stay() {
+		logger.info("{} was sitting in the boat. And crying...", person.getName());
 	}
 	
-	public void execute() {
+	private void execute() {
 		c.exec();
 	}
 }
