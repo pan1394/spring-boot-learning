@@ -17,7 +17,7 @@ public class CommandJump implements Command {
 	}
 	
 	public void exec() {
-		logger.info("System asks {} to jump into the iced see!", p.getName());
+		logger.info("{} jumpped into the iced see!", p.getName());
 	}
 
 }
